@@ -136,8 +136,9 @@ def see_cc():
             with open(f"./Columns/{cn}.txt", 'r', encoding='UTF-8') as ff:
                 rl = ff.readlines()
 
-            al = Label(aa, text=f"{rl}")
-            al.pack()
+            for i in rl:
+                al = Label(aa, text=f"{i}")
+                al.pack()
 
     doneb = Button(a, padx=10, pady=5, text='완료', command=seeCC)
     doneb.pack()
