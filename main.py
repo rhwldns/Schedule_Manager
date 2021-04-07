@@ -1,5 +1,6 @@
 from tkinter import *
 import os
+import glob
 
 root = Tk()
 
@@ -112,12 +113,40 @@ def config():
     donb.pack()
 
 
+def see_cc():
+    a = Toplevel(root)
+    file_list = os.listdir("Columns/")
+    b = ''
+
+    for file in file_list:
+        f = file.replace(".txt", " ")
+        b += str(file + '\n')
+    l = Label(a, text=f'열(Column) 목록입니다.\n조회하고 싶은 열의 이름을 작성해주세요.\n\n{b}')
+    l.pack()
+    e = Entry(a)
+    e.pack()
+
+    def seeCC():
+        cn = e.get()
+        aa = Toplevel(root)
+
+
+        if os.path.isfile(f'./Columns/{cn}.txt'):
+            print(1)
+            with open(f"./Columns/{cn}.txt", 'r', encoding='UTF-8') as ff:
+                rl = ff.readlines()
+
+            al = Label(aa, text=f"{rl}")
+            al.pack()
+
+    doneb = Button(a, padx=10, pady=5, text='완료', command=seeCC)
+    doneb.pack()
 
 ################# 함수 정의 끝 #################
 
 add_kanban = Button(root, height=2, width=15, text='열(Column) 추가', command=Add_Column)
 add_card = Button(root, height=2, width=15, text='카드 (Card) 추가', command=Add_Card)
-see_cc = Button(root, height=2, width=15, text='열 & 카드 보기')
+see_cc = Button(root, height=2, width=15, text='열 & 카드 보기', command=see_cc)
 setting_b = Button(root, height=2, width=15, text='설정', command=config)
 
 add_card.pack()
