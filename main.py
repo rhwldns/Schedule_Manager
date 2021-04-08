@@ -115,6 +115,7 @@ def config():
 
 def see_cc():
     a = Toplevel(root)
+    a.geometry('480x360')
     file_list = os.listdir("Columns/")
     b = ''
 
@@ -126,10 +127,11 @@ def see_cc():
     e = Entry(a)
     e.pack()
 
+
     def seeCC():
         cn = e.get()
         aa = Toplevel(root)
-
+        aa.geometry('480x360')
 
         if os.path.isfile(f'./Columns/{cn}.txt'):
             print(1)
